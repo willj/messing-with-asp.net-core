@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
+using WebApplication1.Data;
 
 namespace WebApplication1
 {
@@ -18,7 +19,7 @@ namespace WebApplication1
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appconfig.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
 
@@ -38,6 +39,11 @@ namespace WebApplication1
 
             // The simple way
             services.AddSingleton(Configuration.GetSection("AppSettings"));
+            // Or add the root, then we've got GetConnectionString() too
+            services.AddSingleton(Configuration);
+
+            // Or add our Repositories as services so they get passed into controllers, and the config root, or connstring gets injected into repo
+            services.AddScoped<ICountriesRepository, CountriesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

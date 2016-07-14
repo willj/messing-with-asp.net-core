@@ -1,4 +1,6 @@
 .vs/
+*/db/
+*/*/*/appconfig.development.json
 
 #################
 ## Eclipse

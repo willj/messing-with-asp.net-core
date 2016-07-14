@@ -1,7 +1,27 @@
-﻿@{
+﻿@using WebApplication1.Models
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <h2>@ViewBag.Cheese</h2>
 
 <h2>@ViewBag.Ham</h2>
+
+<h2>@ViewBag.ConnString</h2>
+
+<h2>@ViewBag.RootStuff</h2>
+
+
+<ul>
+    @foreach (Elephant e in ViewBag.Elephants)
+    {
+        <li>@e.Type - @e.Name</li>
+    }
+</ul>
+
+<ul>
+    @foreach (Country c in ViewBag.Countries)
+    {
+        <li>@c.Id - @c.Name</li>
+    }
+</ul>
