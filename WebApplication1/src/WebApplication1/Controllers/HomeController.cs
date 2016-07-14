@@ -60,5 +60,34 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+        [HttpGet("api/[controller]/cheese/{id}")]
+        public IActionResult GetCheese(int id)
+        {
+            //return NotFound();
+            return new ObjectResult(new { Id = id, Name = "Blah", Type = "BlahBlah" });
+        }
+
+        [HttpGet("api/[controller]/cheese")]
+        public IActionResult AllCheese()
+        {
+            return new OkObjectResult(new List<string>()
+            {
+                "parmesan", "cheddar", "edam"
+            });
+        }
+
+        [HttpGet("api/[controller]/test")]
+        public IActionResult test()
+        {
+            ModelState.AddModelError("Nope", "Nope said no!");
+            ModelState.AddModelError("Nope", "Nope said no again!");
+            ModelState.AddModelError("Auth", "Get oot!");
+
+            return new BadRequestObjectResult(ModelState);
+
+            //return new NoContentResult();
+        }
+
     }
 }
