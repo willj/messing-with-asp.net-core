@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
         {
             string ua = Request.Headers["User-Agent"];
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
-            var now = GMT.Now;
+            ViewBag.Now = GMT.Now;
 
             return View();
         }
