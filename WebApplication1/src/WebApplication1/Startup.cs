@@ -44,6 +44,9 @@ namespace WebApplication1
 
             // Or add our Repositories as services so they get passed into controllers, and the config root, or connstring gets injected into repo
             services.AddScoped<ICountriesRepository, CountriesRepository>();
+
+            Helpers.StaticContentExtensions.SetUrl(Configuration["AppSettings:StaticContentUrl"]);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
